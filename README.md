@@ -1,3 +1,45 @@
+## Running in Ubuntu 20.04 (Added by me)
+
+I tried in Ubuntu 18.04, but somehow it would not recognize "execution" library.
+
+Seemed like the gcc version problem, so I tested it in Ubuntu 20.04 with gcc and g++ version 9.4.0.
+
+### Livox ros driver
+I deleted the livox_ros_driver in the folder and installed it seperately as it caused dependency error
+
+Install it by following https://github.com/Livox-SDK/livox_ros_driver
+
+### Ceres solver
+ceres-solver-1.14.0 is located at http://ceres-solver.org/ceres-solver-1.14.0.tar.gz 
+
+Follow the same instruction at http://ceres-solver.org/installation.html
+
+### GTSAM
+gtsam_4.0.3 is located at https://github.com/borglab/gtsam/releases/tag/4.0.3
+
+Change ISAM2.h and ISAM2.cpp file as the bottom of this page and install it by following https://github.com/borglab/gtsam
+
+### TBB
+Threading Building Blocks 2019 Update 9 is located at https://github.com/oneapi-src/oneTBB/releases/tag/2019_U9
+
+Download it and extract gives you oneTBB-2019_U9 folder
+
+Go to oneTBB-2019_U9 and build it
+```
+make stdver=c++17 tbb_build_prefix=my_tbb_build
+```
+
+Then, go to CMakeLists.txt at STD folder
+
+change 
+```
+set(LIB_OPENCV_IMGPROC_DIR /home/zuhaozou/tbb)
+```
+to
+```
+set(LIB_OPENCV_IMGPROC_DIR <oneTBB-2019_U9 location>)
+```
+
 # LTAOM
 ## LTA-OM: Long-Term Association LiDAR-Inertial Odometry and Mapping [JFR2024]
 
